@@ -22,12 +22,12 @@ xlabel('Time');
 ylabel('Amplitude');
 title('Signal "u" in time domain')
 %% fast fourier transform
-NFFT=8192;
+NFFT=65536;
 xaF = fftshift(abs(fft(xa,NFFT)));
 f=(-1/2:1/NFFT:1/2-1/NFFT)*fs;
 figure, plot(f,xaF(1:end))
 hold on;
-[pka,lka]=findpeaks(xaF, 'MinPeakHeight', 200);
+[pka,lka]=findpeaks(xaF, 'MinPeakHeight', 1000, 'MinPeakDistance', 50);
 plot(f(lka), xaF(lka), 'o');
 title('Signal "a" in frequency domain')
 xlabel('Frequency (Hz)');
@@ -39,7 +39,7 @@ xeF = fftshift(abs(fft(xe,NFFT)));
 f=(-1/2:1/NFFT:1/2-1/NFFT)*fs;
 figure, plot(f,xeF(1:end))
 hold on;
-[pke,lke]=findpeaks(xeF, 'MinPeakHeight', 100);
+[pke,lke]=findpeaks(xeF, 'MinPeakHeight', 500, 'MinPeakDistance', 50);
 plot(f(lke), xeF(lke), 'o');
 title('Signal "e" in frequency domain')
 xlabel('Frequency (Hz)');
@@ -51,7 +51,7 @@ xuF = fftshift(abs(fft(xu,NFFT)));
 f=(-1/2:1/NFFT:1/2-1/NFFT)*fs;
 figure, plot(f,xuF(1:end))
 hold on;
-[pku,lku]=findpeaks(xuF, 'MinPeakHeight', 300);
+[pku,lku]=findpeaks(xuF, 'MinPeakHeight', 1000, 'MinPeakDistance', 50);
 plot(f(lku), xuF(lku), 'o');
 title('Signal "u" in frequency domain')
 xlabel('Frequency (Hz)');
